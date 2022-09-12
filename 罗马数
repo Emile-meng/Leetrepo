@@ -1,0 +1,24 @@
+class Solution {
+    public int romanToInt(String s) {
+        Map<Character, Integer> map = new HashMap<>();
+        map.put('M', 1000);
+        map.put('D', 500);
+        map.put('C', 100);
+        map.put('L', 50);
+        map.put('X', 10);
+        map.put('V', 5);
+        map.put('I', 1);
+        int a = 0;
+ 
+        for (int i = 0; i < s.length(); i++) {
+            //比较当前字符 和 下一个字符 大小  例如：IV   1 < 5  要用减法
+            //最后一个字符一定是加法，所以要加上  i < s.length() - 1
+            if (i < s.length() - 1 && map.get(s.charAt(i)) < map.get(s.charAt(i + 1))) {
+                a -= map.get(s.charAt(i));
+            } else {
+                a += map.get(s.charAt(i));
+            }
+        }
+        return a;
+    }
+}
